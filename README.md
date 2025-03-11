@@ -8,8 +8,12 @@
 
 ## 📝 **Description du Projet**
 
-Ce projet permet de gérer un système de livraison multi-transport en **Go**, avec trois types de moyens de transport : `Truck`, `Drone`, `Boat`.  
-Chaque transport implémente une interface commune et les livraisons sont exécutées en **parallèle** grâce aux **Goroutines** et **Channels**.
+Le projet **Système de Gestion des Livraisons** est une application développée en **Go**, permettant de gérer efficacement l’expédition de colis via différents moyens de transport :
+- 🚚 **Camion (Truck)** : Idéal pour les longues distances sur route.
+- 🚁 **Drone (Drone)** : Rapide mais limité en autonomie.
+- 🚢 **Bateau (Boat)** : Convient aux expéditions maritimes.
+
+Grâce aux **Goroutines** et **Channels**, ce système permet d’exécuter les livraisons en parallèle et d’optimiser leur suivi.
 
 ---
 
@@ -50,38 +54,49 @@ Dans le terminal, exécute :
    go run main.go
    ```
 
-📌 **Le serveur tourne et affiche les livraisons réalisées.**
+📌 **Le programme affiche les livraisons en cours et leurs statuts en temps réel.**
 
 ---
 
 ## 📌 **Fonctionnalités du Projet**
 
 ✅ Interface `TransportMethod` pour standardiser les livraisons  
-✅ Trois moyens de transport : Camion 🚚, Drone 🚁, Bateau 🚢  
-✅ Fabrique `GetTransportMethod()` pour créer dynamiquement les transports  
-✅ Système de suivi des livraisons en temps réel avec **Goroutines** et **Channels**  
-✅ Gestion des erreurs (ex: batterie faible du drone, mauvais temps pour le bateau)  
-
+✅ Trois moyens de transport : **Camion** 🚚, **Drone** 🚁, **Bateau** 🚢  
+✅ **Usine de création dynamique** : `GetTransportMethod()`  
+✅ Gestion des livraisons **en parallèle** avec **Goroutines** et **Channels**  
+✅ Gestion des erreurs :
+   - 📉 **Batterie faible du drone**
+   - 🌊 **Conditions météorologiques défavorables pour le bateau**
+   
 ---
 
 ## 📖 **Explication du Code**
 
-- `transport.go` : Définit l’interface `TransportMethod`.
-- `transports.go` : Implémente trois transports (`Truck`, `Drone`, `Boat`).
-- `factory.go` : Contient la fabrique `GetTransportMethod()` pour créer dynamiquement un transport.
-- `tracking.go` : Gère le suivi des livraisons avec des **Goroutines** et **Channels**.
-- `main.go` : Orchestre les livraisons en exécutant les méthodes en parallèle.
+- **`transport.go`** : Définit l’interface `TransportMethod`.
+- **`transports.go`** : Implémente les classes `Truck`, `Drone`, `Boat`.
+- **`factory.go`** : Fournit `GetTransportMethod()` pour générer un transport.
+- **`tracking.go`** : Gère le suivi des livraisons via **Channels**.
+- **`main.go`** : Exécute les livraisons en **parallèle**.
 
 ---
+
+## 📌 **Exemple d'Exécution**
+
+```sh
+$ go run main.go
+🚚 Truck T123 delivered package to New York
+🚁 Drone D456 delivered package to Los Angeles
+🚢 Boat B789 delivered package to Paris
+```
 
 ## ✍️ **Auteurs**
 
 Ce projet a été réalisé dans le cadre du **Groupe Go** par :
-- Ianis CHENNAF  
-- Philippe Ivan MBARGA  
-- Mateo OUDART  
-- Salman Ali MADEC  
-- Lucas MESSIA DOLIVEUX  
+- **Ianis CHENNAF**  
+- **Philippe Ivan MBARGA**  
+- **Mateo OUDART**  
+- **Salman Ali MADEC**  
+- **Lucas MESSIA DOLIVEUX**  
 
 ---
 
