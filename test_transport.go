@@ -52,7 +52,6 @@ type Boat struct {
 	WeatherOK bool
 }
 
-
 func (b Boat) DeliverPackage(destination string) (string, error) {
 	if !b.WeatherOK {
 		return "", errors.New("🌊 Mauvais temps, impossible de livrer")
