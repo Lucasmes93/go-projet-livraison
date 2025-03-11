@@ -33,19 +33,26 @@ Grâce aux **Goroutines** et **Channels**, ce système permet d’exécuter les 
 
 2️⃣ **Initialiser le module Go** (si ce n'est pas déjà fait) :
    ```sh
-   go mod init go-projet-livraison
+   go mod init go_projet_livraison
    ```
 
 3️⃣ **Vérifier la structure du projet** :
    ```
-   go-projet-livraison/
-   ├── factory.go
-   ├── go.mod
-   ├── main.go
-   ├── README.md
-   ├── tracking.go
-   ├── transport.go
-   ├── transports.go
+  go-projet-livraison/
+│── transports/               # Contient les méthodes de transport
+│   ├── boat.go               # Bateau (Boat)
+│   ├── drone.go              # Drone (Drone)
+│   ├── truck.go              # Camion (Truck)
+│   ├── transport.go          # Interface TransportMethod
+│── factory/                  # Fabrique pour instancier les transports
+│   ├── factory.go
+│── tracking/                 # Suivi des livraisons avec Goroutines
+│   ├── tracking.go
+│── main.go                   # Point d'entrée du programme
+│── go.mod                    # Fichier des dépendances Go
+│── test_transport.go         # Tests unitaires
+│── README.md                 # Documentation du projet
+
    ```
 
 4️⃣ **Lancer le programme**  
