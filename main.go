@@ -8,23 +8,25 @@ import (
 )
 
 func main() {
+	deliveries := 0
+
 	ch := make(chan string)
 
 	truck, _ := factory.GetTransportMethod("truck")
 	drone, _ := factory.GetTransportMethod("drone")
 	boat, _ := factory.GetTransportMethod("boat")
 
-	// Vérifier la météo avant de lancer la livraison
 	if b, ok := boat.(transports.Boat); ok && b.GetStatus() == "Météo actuelle : Clear" {
 		go tracking.TrackDelivery(boat, "Paris", 300, ch)
-	} else {
-		fmt.Println("❌ Le bateau ne peut pas livrer à cause du mauvais temps.")
+		deliveries++
 	}
 
 	go tracking.TrackDelivery(truck, "New York", 200, ch)
 	go tracking.TrackDelivery(drone, "Los Angeles", 80, ch)
+	deliveries += 2
 
-	for i := 0; i < 3; i++ {
+
+	for i := 0; i < deliveries; i++ {
 		fmt.Println(<-ch)
 	}
 }
