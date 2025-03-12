@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"go_projet_livraison/factory"
 	"go_projet_livraison/tracking"
+	"go_projet_livraison/transports"
 )
 
 func main() {
@@ -14,7 +15,7 @@ func main() {
 	boat, _ := factory.GetTransportMethod("boat")
 
 	// Vérifier la météo avant de lancer la livraison
-	if boat.GetStatus() == "Météo actuelle : Clear" {
+	if b, ok := boat.(transports.Boat); ok && b.GetStatus() == "Météo actuelle : Clear" {
 		go tracking.TrackDelivery(boat, "Paris", 300, ch)
 	} else {
 		fmt.Println("❌ Le bateau ne peut pas livrer à cause du mauvais temps.")
