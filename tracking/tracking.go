@@ -5,10 +5,10 @@ import (
 	"go_projet_livraison/transports"
 )
 
-func TrackDelivery(transport transports.TransportMethod, destination string, ch chan string) {
-	status, err := transport.DeliverPackage(destination)
+func TrackDelivery(transport transports.TransportMethod, destination string, distance int, ch chan string) {
+	status, err := transport.DeliverPackage(destination, distance)
 	if err != nil {
-		ch <- fmt.Sprintf("Delivery failed: %v", err)
+		ch <- fmt.Sprintf("❌ Livraison échouée : %v", err)
 		return
 	}
 	ch <- status

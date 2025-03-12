@@ -1,21 +1,19 @@
 package transports
 
-import (
-	"fmt"
-)
+import "fmt"
 
 type Boat struct {
 	ID      string
 	Weather string
 }
 
-func (b Boat) DeliverPackage(destination string) (string, error) {
+func (b Boat) DeliverPackage(destination string, distance int) (string, error) {
 	if b.Weather != "Clear" {
-		return "", fmt.Errorf("Boat cannot deliver due to bad weather (%s)", b.Weather)
+		return "", fmt.Errorf("🌊 Mauvais temps, impossible de livrer")
 	}
-	return fmt.Sprintf("Boat %s delivered package to %s", b.ID, destination), nil
+	return fmt.Sprintf("⛵ Boat %s a livré à %s (distance: %d km)", b.ID, destination, distance), nil
 }
 
 func (b Boat) GetStatus() string {
-	return fmt.Sprintf("Boat weather condition: %s", b.Weather)
+	return fmt.Sprintf("Météo actuelle : %s", b.Weather)
 }
