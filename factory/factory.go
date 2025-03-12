@@ -12,7 +12,7 @@ func GetTransportMethod(method string) (transports.TransportMethod, error) {
 	case "drone":
 		return &transports.Drone{ID: "D456", Battery: 100, MaxRange: 50}, nil
 	case "boat":
-		return transports.Boat{ID: "B789", Weather: "Clear"}, nil
+		return transports.Boat{ID: "B789", Weather: "Stormy"}, nil
 	default:
 		return nil, errors.New("unknown transport method")
 	}
